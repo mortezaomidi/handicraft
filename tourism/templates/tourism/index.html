@@ -1,0 +1,25 @@
+{% extends 'tourism/base.html' %}
+
+{% load static %}
+
+{% block head %}
+  {{block.super}}
+  {{ form.media }}
+  <!-- <link rel="stylesheet" href="{% static "tourism/home.css" %}"> -->
+{% endblock %}
+
+{% block header %}
+  {{block.super}}
+
+{% endblock %}
+
+{% block menue %}
+  {{block.super}}
+{% endblock %}
+
+{% block main %}
+  <img style="position: absolute; right: 100px; top: 5px" src="{% static "tourism/img/01.PNG" %}" alt="">
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

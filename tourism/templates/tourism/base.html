@@ -1,0 +1,44 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    {% block head %}
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <link rel="stylesheet" href="{% static "tourism/base.css" %}">
+      <title>{% block title %}{% endblock %}</title>
+    {% endblock %}
+  </head>
+
+  <body dir="rtl">
+      {% block content %}
+        <div id="header">
+           {% block header %}
+              <table style="width:100%;">
+                <tr>
+                  <th><strong> <p style="font-size: 25px;"> بازارچه های صنایع دستی  </p> </strong></th>
+                  <th> <p style=""> معرفی شهرستان بابلسر / راهنما</p></th>
+                  <th><p> ورود  </p></th>
+                  <th><p> عضویت  </p></th>
+                </tr>
+              </table>
+           {% endblock %}
+         </div>
+
+
+        <div id="menue">
+           {% block menue %}
+              <div class="scrollmenu">
+                <a href="{% url 'home' %}" sty>صفحه اصلی</a>
+                <a href="{% url 'home' %}">محدودیت ها</a>
+                <a href="{% url 'home' %}">مکان های پیشنهادی</a>
+                <a href="{% url 'home' %}">تعیین مناطق مناسب</a>
+                <a href="{% url 'home' %}"> ارزیابی سیستم </a>
+              </div>
+           {% endblock %}
+        </div>
+        <div id="main">  {% block main %} {% endblock %} </div>
+        <div id="footer"> {% block footer %} {% endblock %} </div>
+      {% endblock %}
+  </body>
+</html>
