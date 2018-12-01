@@ -1,0 +1,47 @@
+{% extends 'tourism/base.html' %}
+
+{% load static %}
+{% load leaflet_tags %}
+
+
+{% block head %}
+  {{block.super}}
+  <head>
+    {{ form.media }}
+      {% leaflet_js plugins="ALL" %}
+      {% leaflet_css plugins="ALL" %}
+
+    <style>
+
+      #id_geom-map {
+        height: 550px;
+      }
+    </style>
+    <!--[if IE 8]><script src="{% static "leaflet/eventlister.ie8.js" %}"></script><!--<![endif]-->
+    <!--[if lt IE 8]><script src="{% static "leaflet/eventlister.ie6-7.js" %}"></script><!--<![endif]-->
+  </head>
+
+  <!-- <link rel="stylesheet" href="{% static "tourism/home.css" %}"> -->
+{% endblock %}
+
+{% block header %}
+  {{block.super}}
+
+{% endblock %}
+
+{% block menue %}
+  {{block.super}}
+{% endblock %}
+
+{% block main %}
+<form method="post" action="">
+  {% csrf_token %}
+  {% for field in form.visible_fields %}
+    {{ field }}
+  {% endfor %}
+  <button align="center" style="font-size: 20px; position: absolute; left: 700px; top: 555px; width: 100px; height: 35px; background-color: white; border: 1px solid black;" type="submit" name="button">ذخیره</button>
+</form>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
