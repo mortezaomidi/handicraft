@@ -1,18 +1,45 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.models import User
+from django.contrib import auth
+from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.http import HttpResponse
-from .forms import LocationForm, ConstrainForm
+from .forms import LocationForm, ConstrainForm, SusForm
+
+
+def login(request):
+    if request.user.is_authenticated():
+        return render(request, 'tourism/index.html')
+
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = auth.authenticate(username=username, password=password)
+
+        if user is not None:
+            # correct username and password login the user
+            auth.login(request, user)
+            return redirect('http://127.0.0.1:8000/')
+
+        else:
+            messages.error(request, 'نام کاربری یا گذرواژه اشتباه است')
+
+    return render(request, 'tourism/login.html')
 
 
 def home(request):
+    if not request.user.is_authenticated():
+        return redirect('http://127.0.0.1:8000/login')
     return render(request, 'tourism/index.html')
+
 
 def babolsar(request):
     return render(request, 'tourism/babolsar.html')
 
+
 def help(request):
     return render(request, 'tourism/help.html')
+
 
 def register(request):
     if request.method == 'POST':
@@ -35,9 +62,6 @@ def register(request):
     else:
         return render(request, 'tourism/register.html')
 
-
-def login(request):
-    pass
 
 def location(request):
     user = request.user
@@ -63,12 +87,19 @@ def constrain(request):
     form = ConstrainForm()
     return render(request, 'tourism/location.html',{'form': form})
 
-
-
-
-
 def best_location(request):
     pass
 
+
 def sus(request):
-    pass
+    user = request.user
+    if request.method == 'POST':
+        form = SusForm(request.POST)
+        if form.is_valid():
+            criteria = form.save(commit=False)
+            criteria.user = user
+            criteria.save()
+            return HttpResponse('با تشکر از مشارکت شما. نظرات شما با موفقیت ثبت شد.')
+    else:
+        form = SusForm()
+    return render(request, 'tourism/sus.html', {'form': form})

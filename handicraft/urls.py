@@ -19,11 +19,13 @@ from tourism import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^login$',views.login, name='login'),
     url(r'^babolsar$', views.babolsar, name='babolsar'),
     url(r'^help$', views.help, name='help'),
     url(r'^register$', views.register, name='register'),
     url(r'^location$', views.location, name='location'),
     url(r'^constrain$', views.location, name='constrain'),
+    url(r'^sus$', views.sus, name='sus'),
     url(r'^admin/', admin.site.urls),
 
 ]

@@ -17,24 +17,26 @@
               <table style="width:100%;">
                 <tr>
                   <th><strong> <p style="font-size: 25px;"> بازارچه های صنایع دستی  </p> </strong></th>
-                  <th> <p style=""> معرفی شهرستان بابلسر / راهنما</p></th>
-                  <th><p> ورود  </p></th>
-                  <th><p> عضویت  </p></th>
+
+                  <th> <a style="color: black;text-decoration: none;" href="{% url 'babolsar' %}" >  معرفی شهرستان بابلسر / <a style="color: black;text-decoration: none;" href="{% url 'help' %}" >  راهنما </a> </a></th>
+                  <th> <a style="color: black;text-decoration: none;" href="{% url 'login' %}" >  ورود </a></th>
+                  <th> <a style="color: black;text-decoration: none;" href="{% url 'register' %}" >  عضویت </a></th>
+
                 </tr>
               </table>
            {% endblock %}
          </div>
 
-
         <div id="menue">
            {% block menue %}
               <div class="scrollmenu">
-                <a href="{% url 'home' %}" sty>صفحه اصلی</a>
-                <a href="{% url 'home' %}">محدودیت ها</a>
-                <a href="{% url 'home' %}">مکان های پیشنهادی</a>
+                <a href="{% url 'home' %}">صفحه اصلی</a>
+                <a href="{% url 'constrain' %}">محدودیت ها</a>
+                <a href="{% url 'location' %}">مکان های پیشنهادی</a>
                 <a href="{% url 'home' %}">تعیین مناطق مناسب</a>
-                <a href="{% url 'home' %}"> ارزیابی سیستم </a>
+                <a href="{% url 'sus' %}"> ارزیابی سیستم </a>
               </div>
+
            {% endblock %}
         </div>
         <div id="main">  {% block main %} {% endblock %} </div>
